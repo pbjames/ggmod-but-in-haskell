@@ -2,7 +2,9 @@ module Lib (
   someFunc,
 ) where
 
-import Options.Applicative
+import Types (Character (..))
+
+import Network.HTTP.Req
 
 someFunc :: IO ()
-someFunc = putStrLn "someFunc"
+someFunc = print SOL

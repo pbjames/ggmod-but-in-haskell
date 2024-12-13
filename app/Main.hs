@@ -1,34 +1,23 @@
 module Main (main) where
 
-import Lib
+import Control.Monad (when)
+import Lib (someFunc)
 import Options.Applicative
 
-data Args = Args
-  { hello :: String
-  , quiet :: Bool
-  , enthusiasm :: Int
-  }
+data Args = Args Int Bool
 
 arguments :: Parser Args
 arguments =
   Args
-    <$> strOption
-      ( long "hello"
-          <> metavar "TARGET"
-          <> help "Target for the greeting"
+    <$> argument
+      auto
+      ( metavar "MOD_ID"
+          <> help "Mod ID to retrieve, download and store a mod"
       )
     <*> switch
-      ( long "quiet"
-          <> short 'q'
-          <> help "Whether to be quiet"
-      )
-    <*> option
-      auto
-      ( long "enthusiasm"
-          <> help "How enthusiastically to greet"
-          <> showDefault
-          <> value 1
-          <> metavar "INT"
+      ( long "verbose"
+          <> short 'v'
+          <> help "Give more output"
       )
 
 main :: IO ()
@@ -38,10 +27,11 @@ main = execParser opts >>= greet
     info
       (arguments <**> helper)
       ( fullDesc
-          <> progDesc "Print a greeting for TARGET"
-          <> header "hello - a test for optparse-applicative"
+          <> progDesc "Download mods"
+          <> header "skibidi rizzler"
       )
 
 greet :: Args -> IO ()
-greet (Args h False n) = putStrLn $ "Hello, " ++ h ++ replicate n '!'
-greet _ = return ()
+greet (Args modID verbose) = do
+  when verbose $ putStrLn "Verbose output"
+  someFunc

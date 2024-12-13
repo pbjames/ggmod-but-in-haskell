@@ -22,6 +22,7 @@ description: Please see the README on GitHub at <https://github.com/githubuser/g
 dependencies:
   - base >= 4.7 && < 5
   - optparse-applicative
+  - req
 
 ghc-options:
   - -Wall
@@ -36,6 +37,8 @@ ghc-options:
 
 library:
   source-dirs: src
+  exposed-modules:
+    - Lib
 
 executables:
   ggmod-exe:
@@ -47,7 +50,7 @@ executables:
       - -with-rtsopts=-N
     dependencies:
       - ggmod
-      - optparse-applicative
+      - req
 
 tests:
   ggmod-test:

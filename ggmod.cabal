@@ -26,6 +26,7 @@ library
   exposed-modules:
       Lib
   other-modules:
+      Types
       Paths_ggmod
   autogen-modules:
       Paths_ggmod
@@ -35,6 +36,7 @@ library
   build-depends:
       base >=4.7 && <5
     , optparse-applicative
+    , req
   default-language: Haskell2010
 
 executable ggmod-exe
@@ -50,6 +52,7 @@ executable ggmod-exe
       base >=4.7 && <5
     , ggmod
     , optparse-applicative
+    , req
   default-language: Haskell2010
 
 test-suite ggmod-test
@@ -67,4 +70,5 @@ test-suite ggmod-test
     , base >=4.7 && <5
     , ggmod
     , optparse-applicative
+    , req
   default-language: Haskell2010
